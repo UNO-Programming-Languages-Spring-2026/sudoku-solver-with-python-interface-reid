@@ -9,6 +9,17 @@ class Sudoku:
     def __str__(self) -> str:
         s = ""
         # YOUR CODE HERE
+        block_size = 3
+        for row in range(1,10):
+            for col in range(1,10):
+                if col % block_size == 0:
+                    s += f'{self.sudoku[(row,col)]}  '
+                else:
+                    s += f'{self.sudoku[(row,col)]} '
+            if row % block_size == 0:
+                s += "\n\n"
+            else:
+                s += "\n"
         return s
 
     @classmethod
