@@ -8,7 +8,19 @@ class Sudoku:
 
     def __str__(self) -> str:
         s = ""
-        # YOUR CODE HERE
+        block_size = 3
+
+        for row in range(1, 10):
+            for col in range(1,10):
+                # print(f"{(row, col)} - {self.sudoku[(row, col)]}")
+                s += f"{self.sudoku[(row, col)]} "
+                if col % block_size == 0:
+                    s += " "
+            s += "\n"
+            if row % block_size == 0:
+                s += "\n"
+
+        # print(f"s:\n{s}")
         return s
 
     @classmethod
