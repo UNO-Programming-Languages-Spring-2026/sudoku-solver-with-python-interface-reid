@@ -22,12 +22,17 @@ class ClingoApp(clingo.application.Application):
 
     def main(self, ctl, files):
         ctl.load("sudoku2.lp")
-        for f in files:
-            ctl.load(f)
-        if not files:
-            ctl.load("-")
-        context = Context()
-        ctl.ground(context=context)
+        ctl.load("sudoku_py.lp")
+
+        if files:
+            with open(files[0], "r") as f:
+                board_str = f.read()
+        else:
+            board_str = sys.stdin.read()
+            
+        board = Sudoku.from_str(board_str)
+        context = Context(board)
+        ctl.ground([("base", [])], context=context)
         ctl.solve()
 
 
